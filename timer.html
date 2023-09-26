@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <head>
+        <title>pomodoro calculator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <script src="js/jquery-1.12.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </head>
+<script>
+             
+             $(document).ready(function() {
+            //LOAD EFFECT
+            $('#pomBody').addClass('animated flip');
+
+            //TIMER VARIABLES
+            var workTime=25;
+            var breakTime=5;
+            var workTimeInterval;
+            var breakTimeInterval;
+            var workTimeMilli = workTime * 60;
+            var breakTimeMilli=breakTime*60;
+            var isTimerOn=false;
+
+            //TIMER FUNCTIONS
+
+            function workCountDown(){
+                if (workTimeMilli==0) {
+                    $('.work').addClass('animated shake');
+                    breakCountDown();
+                }
+                else if (workTime>=0 && workTimeMilli){
+                    workTimeMilli--;
+                    $('#wtt').remove();
+                    $('#divwtt').append('<h2 id="wtt">'+workTimeMilli+'</h2>');
+                    workTimeInterval= setTimeout(workCountDown,1000);
+                }
+            }
+
+            function startWork(){
+                if (!isTimerOn){
+                    isTimerOn=true;
+                    console.log(workTimeMilli);
+                    workCountDown();
+                }
+            }
+            function stopWork(){
+                isTimerOn=false;
+                clearTimeout(workTimeInterval);
+            }
+
+            function breakCountDown(){
+                if (breakTimeMilli==0) {
+                    $('.break').addClass('animated shake');
+            }
+            else if (breakTime>=0  && breakTimeMilli){
+                    breakTimeMilli--;
+                    $('#btt').remove();
+                    $('#divbtt').append('<h2 id="btt">'+breakTimeMilli+'</h2>');
+                    breakTimeInterval= setTimeout(breakCountDown,1000);
+                }
+            }
+            function startBreak(){
+                if (!isTimerOn){
+                    isTimerOn=true;
+                    breakCountDown();
+                }
+            }
+            function stopBreak(){
+                isTimerOn=false;
+                clearTimeout(breakTimeInterval);
+            }
+
+            //BUTTON EVENTS
+
+            //WORK BUTTONS
+            $('#workBtnUp').click(function(){
+                workTime+=1;
+                workTimeMilli+=60;
+                $('#wt').remove();
+                $('#divwt').append('<h2 id="wt">'+workTime+' : 00'+'</h2>');
+            });
+            $('#workBtnDown').click(function(){
+                if (workTime>1){
+                    workTime-=1;
+                    workTimeMilli-=60;
+                    $('#wt').remove();
+                    $('#divwt').append('<h2 id="wt">'+workTime+' : 00'+'</h2>');
+                }
+            });
+            $('#workStart').click(function() {
+                startWork();
+            });
+            $('#workPause').click(function(){
+                stopWork();
+            });
+
+
+            //BREAK BUTTONS
+
+            $('#breakBtnUp').click(function(){
+                breakTime+=1;
+                breakTimeMilli+=60;
+                $('#bt').remove();
+                $('#divbt').append('<h2 id="bt">'+breakTime+' : 00'+'</h2>');
+            });
+
+            $('#breakBtnDown').click(function(){
+                if (breakTime>1){
+                    breakTime-=1;
+                    breakTimeMilli-=60;
+                    $('#bt').remove();
+                    $('#divbt').append('<h2 id="bt">'+breakTime+' : 00'+'</h2>');
+                }
+            });
+            $('#breakStart').click(function() {
+                startBreak();
+            });
+            $('#breakPause').click(function(){
+                stopBreak();
+            });
+        });
+        </script>
+</script>
+        <div class="row">
+                <div class="container-fluid" id="pomBody">
+                    <div class="container-fluid text-center font">
+                        <h1>THE BARE-BONNED POMODORO TIMER</h1>
+                        <div clas="row">
+                            <div class="col-xs-3">
+                                <a href="https://github.com/ekpo-d" target="_blank" ><button type="button" class="btn btn-lg workBtn"><i class="fa fa-github"></i></i></button></a>
+                            </div>
+                            <div class="col-xs-3">
+    <a href="https://ng.linkedin.com/in/ekpodave" target="_blank" >
+        <button type="button" class="btn btn-lg workBtn"><i class="fa fa-linkedin-square"></i></button></a>
+                            </div>
+                            <div class="col-xs-3">
+                                <a href="https://twitter.com/dj_170" target="_blank" >
+        <button type="button" class="btn btn-lg breakBtn"><i class="fa fa-twitter-square"></i></button></a>
+                            </div>
+                            <div class="col-xs-3">
+                                <a href="https://www.freecodecamp.com/ekpo-d" target="_blank" >
+        <button type="button" class="btn btn-lg breakBtn"><i class="fa fa-fire fa-fw"></i></button></a><br>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="row">
+                       <div class="col-xs-6 text-center ">
+                           <div class="container-fluid work">
+                           <br><br>
+                           <button class="btn workBtn" id="workBtnUp"><i class="fa fa-chevron-up"></i></button>
+                           <div id="divwt">
+                               <h2 id="wt">25 : 00</h2>
+                           </div>
+                           <h4>Work Time (Minutes)</h4>
+                           <button class="btn workBtn" id="workBtnDown"><i class="fa fa-chevron-down"></i></button>
+                               <div id="divwtt"><br>
+                                   <h4>Count-down Timer (Seconds)</h4>
+                                   <h2 id="wtt">00</h2>
+                               </div>
+                           <div><br>
+                           <button class="btn workBtn" id="workStart"><i class="fa fa-play"></i> Start</button>
+                               <button class="btn workBtn" id="workPause"><i class="fa fa-pause"></i> Pause</button>
+                           </div>
+                               </div>
+                       </div>
+                       <div class="col-xs-6 text-center ">
+                           <div class="container-fluid break">
+                           <br><br>
+                           <button class="btn breakBtn" id="breakBtnUp"><i class="fa fa-chevron-up"></i></button>
+                           <div id="divbt">
+                               <h2 id="bt">5 : 00</h2>
+                           </div>
+                           <h4>Break Time (Minutes)</h4>
+                           <button class="btn breakBtn" id="breakBtnDown"><i class="fa fa-chevron-down"></i></button>
+                               <div id="divbtt"><br>
+                                   <h4>Count-down Timer (Seconds)</h4>
+                                   <h2 id="btt">00</h2>
+                               </div>
+                           <div><br>
+                               <button class="btn breakBtn" id="breakStart"><i class="fa fa-play"></i> Start</button>
+                               <button class="btn breakBtn" id="breakPause"><i class="fa fa-pause"></i> Pause</button>
+                           </div>
+                               </div>
+                       </div>
+                   </div>
+                </div>
+        </div>
+        <style>
+                 #pomBody{
+            border: solid blueviolet 1px;
+            background-color: white;
+            margin-top:30px;
+            height: 600px;
+            width: 600px;
+        }
+        .workBtn{
+            background-color: white;
+            border: solid green 1px;
+        }
+        .breakBtn{
+            background-color: white;
+            border: solid red 1px;
+        }
+        #divwtt{
+            border: solid green 1px;
+            border-radius: 10%;
+            margin-top:20px;
+        }
+        #divbtt{
+            border: solid red 1px;
+            border-radius: 10%;
+            margin-top:20px;
+        }
+        .work{
+            color: green;
+            border: solid green 1px;
+            border-radius: 10%;
+            padding-bottom:20px;
+            margin-top:25px;
+        }
+        .break{
+            color: red;
+            border: solid red 1px;
+            border-radius: 10%;
+            padding-bottom:20px;
+            margin-top:25px;
+        }
+        .font {
+            font-family:Impact;
+            color: blueviolet;
+        }
+        </style>
+        <script>
+   
+</body>
+</html>

@@ -1,60 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Let's Study Ketan</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto+Slab:700'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'><link rel="stylesheet" href="website.css">
+
 </head>
 <body>
-    <div class="container"> <h1 id="headline" style="
-        font-family:fantasy ;
-        text-decoration: underline blueviolet;">Countdown To Boards </h1> <div id="countdown"> <ul> <li><span id="days"></span>days</li> <li><span id="hours"></span>Hours</li> <li><span id="minutes"></span>Minutes</li> <li><span id="seconds"></span>Seconds</li> </ul> </div> <div id="content" class="emoji"> <span></span> <span></span> <span></span> </div> </div>
-<style>
-    /* general styling */ :root { --smaller: .75; } * { box-sizing: border-box; margin: 0; padding: 0; } html, body { height: 100%; margin: 0; } body { align-items: center; 
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-image: url(https://imgs.search.brave.com/pfV_GA44__N_M0n8gKKK2E7ru9LlwnoYGgqYha_2KSw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNi8w/My8yNy8wNy8zMi9j/bG91ZHMtMTI4MjMx/NF82NDAuanBn); display: flex; font-family: Impact, } .container { color: #333; margin: 0 auto; text-align: center; } h1 { font-weight: normal; letter-spacing: .125rem;  } li { display: inline-block; font-size: 1.5em; list-style-type: none; padding: 1em; text-transform: uppercase; } li span { display: block; font-size: 4.5rem; } .emoji { display: none; padding: 1rem; } .emoji span { font-size: 4rem; padding: 0 .5rem; } @media all and (max-width: 768px) { h1 { font-size: calc(1.5rem * var(--smaller)); } li { font-size: calc(1.125rem * var(--smaller)); } li span { font-size: calc(3.375rem * var(--smaller)); } }
+<!-- partial:index.partial.html -->
+<div class="wrapper">
+  <canvas id="stars"></canvas>
+  <canvas id="yahia"></canvas>
+  <div class="container">
+    <div class="template color-yellow" data-template="home">
+      <main>
+        <h1><span>A 
+            <mark>16 years</mark> old</span><span> 10th Grader</span></h1>
+        <div class="p"><span>Codewithketan27@gmail.com</span><span>+91 6284292969</span></div>
+        <div class="links">
+        
+          <a class="link color-green" href="website.html" title="Tell me a secret" target="_blank">Visit Website</a>
+        
+        </div>
+      </main>
+      <footer>
+        <div class="links"><a class="link small alt" href="http://facebook.com/YahiaRefaiea" title="Facebook (@YahiaRefaiea)" target="_blank">Facebook</a><a class="link small alt" href="http://twitter.com/YahiaRefaiea" title="Twitter (@YahiaRefaiea)" target="_blank">Twitter</a><a class="link small alt" href="http://codepen.io/YahiaRefaiea" title="Codepen (@YahiaRefaiea)" target="_blank">Codepen</a><a class="link small alt" href="http://github.com/YahiaRefaiea" title="GitHub (@YahiaRefaiea)" target="_blank">GitHub</a></div>
+      </footer>
+    </div>
+    <div class="loading" id="identity" title="Yahia Refaiea identity">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <a class="loading" id="signature" href="https://beta.yahiarefaiea.com/" title="Go to home" target="_blank"></a>
+  </div>
+</div>
 
-    </style>
-<script>
-  (function () {
-const second = 1000,
-minute = second * 60,
-hour = minute * 60,
-day = hour * 24;
-//I'm adding this section so I don't have to keep updating this pen every year :-)
-//remove this if you don't need it
-let today = new Date(),
-dd = String(today.getDate()).padStart(2, "0"),
-mm = String(today.getMonth() + 1).padStart(2, "0"),
-yyyy = today.getFullYear(),
-nextYear = yyyy + 1,
-dayMonth = "02/15/",
-birthday = dayMonth + yyyy;
-today = mm + "/" + dd + "/" + yyyy;
-if (today > birthday) {
-birthday = dayMonth + nextYear;
-}
-//end
-const countDown = new Date(birthday).getTime(),
-x = setInterval(function() {
-const now = new Date().getTime(),
-distance = countDown - now;
-document.getElementById("days").innerText = Math.floor(distance / (day)),
-document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
-document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
-document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
-//do something later when date is reached
-if (distance < 0) {
-document.getElementById("headline").innerText = "It's my birthday!";
-document.getElementById("countdown").style.display = "none";
-document.getElementById("content").style.display = "block";
-clearInterval(x);
-}
-//seconds
-}, 0)
-}());
-</script>
 </body>
 </html>
